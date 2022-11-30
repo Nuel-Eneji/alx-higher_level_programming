@@ -1,10 +1,13 @@
-
 #!/usr/bin/node
-if (process.argv.length > 3) {
-  const args = process.argv.map(Number);
-  args.slice(2);
-  args.sort((a, b) => a - b);
-  console.log(args[args.length - 2]);
-} else {
-  console.log(0);
+
+const { argv } = require('process');
+const args = argv.slice(2);
+let result = 0;
+let finalArray = [];
+
+if (args.length > 1) {
+  finalArray = [...new Set(args.map((e) => parseInt(e)).sort((a, b) => b - a))];
+  result = finalArray.length > 1 ? finalArray[1] : finalArray[0];
 }
+
+console.log(result);
